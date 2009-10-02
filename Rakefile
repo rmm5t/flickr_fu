@@ -10,10 +10,10 @@ begin
     require 'jeweler'
   end
   Jeweler::Tasks.new do |s|
-    s.name = "flickr_fu"
+    s.name = "rmm5t-flickr_fu"
     s.summary = "Provides a ruby interface to flickr via the REST api"
     s.email = "ben@commonthread.com"
-    s.homepage = "http://github.com/commonthread/flickr_fu"
+    s.homepage = "http://github.com/rmm5t/flickr_fu"
     s.description = "Provides a ruby interface to flickr via the REST api"
     s.authors = ["Ben Wyrosdick", "Maciej Bilas"]
     s.rdoc_options = ["--main", "README"]
