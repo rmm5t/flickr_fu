@@ -5,19 +5,18 @@
 
 Gem::Specification.new do |s|
   s.name = %q{flickr_fu}
-  s.version = "0.3.1"
+  s.version = "0.3.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Wyrosdick", "Maciej Bilas"]
-  s.date = %q{2009-09-18}
+  s.date = %q{2009-10-01}
   s.description = %q{Provides a ruby interface to flickr via the REST api}
   s.email = %q{ben@commonthread.com}
   s.extra_rdoc_files = [
     "README"
   ]
   s.files = [
-    ".gitignore",
-     "LICENSE",
+    "LICENSE",
      "README",
      "Rakefile",
      "VERSION.yml",
