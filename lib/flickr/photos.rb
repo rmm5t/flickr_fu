@@ -206,27 +206,27 @@ class Flickr::Photos < Flickr::Base
   def geo
     @geo ||= Flickr::Photos::Geo.new(@flickr)
   end
-  
+
   # Returns a Flickr::Photos::Photo object of the given id.
   # Raises an error if photo not found
   def find_by_id(photo_id)
     rsp = @flickr.send_request('flickr.photos.getInfo', :photo_id => photo_id)
     Photo.new(@flickr, :id => rsp.photo[:id].to_i, :owner => rsp.photo.owner,
-      :secret => rsp.photo[:secret], :server => rsp.photo[:server].to_i, :farm => rsp.photo[:farm], 
+      :secret => rsp.photo[:secret], :server => rsp.photo[:server].to_i, :farm => rsp.photo[:farm], :views => rsp.photo[:views],
       :title => rsp.photo.title,
       :is_public => rsp.photo.visibility[:public], :is_friend => rsp.photo.visibility[:is_friend], :is_family => rsp.photo.visibility[:is_family])
   end
-  
+
   protected
   def create_attributes(photo)
-    {:id => photo[:id], 
-     :owner => photo[:owner], 
-     :secret => photo[:secret], 
-     :server => photo[:server], 
-     :farm => photo[:farm], 
-     :title => photo[:title], 
-     :is_public => photo[:ispublic], 
-     :is_friend => photo[:isfriend], 
+    {:id => photo[:id],
+     :owner => photo[:owner],
+     :secret => photo[:secret],
+     :server => photo[:server],
+     :farm => photo[:farm],
+     :title => photo[:title],
+     :is_public => photo[:ispublic],
+     :is_friend => photo[:isfriend],
      :is_family => photo[:isfamily],
      :license_id => photo[:license].to_i,
      :uploaded_at => (Time.at(photo[:dateupload].to_i) rescue nil),
