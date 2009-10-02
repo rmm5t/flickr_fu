@@ -20,7 +20,7 @@ begin
     s.extra_rdoc_files = ["README"]
     s.add_dependency("mime-types", ["> 0.0.0"])
     s.add_dependency("xml-magic", ["> 0.0.0"])
-	s.files.exclude("spec/spec.local.opts")
+	s.files.exclude("spec/spec.local.opts", ".gitignore")
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
