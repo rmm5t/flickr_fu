@@ -1,17 +1,18 @@
+# -*- coding: utf-8 -*-
 class Flickr::Photos < Flickr::Base
   def initialize(flickr)
     @flickr = flickr
   end
 
-  # Return a list of photos matching some criteria. Only photos visible to the calling user will be returned. To return private or semi-private photos, 
+  # Return a list of photos matching some criteria. Only photos visible to the calling user will be returned. To return private or semi-private photos,
   # the caller must be authenticated with 'read' permissions, and have permission to view the photos. Unauthenticated calls will only return public photos.
-  # 
+  #
   # == Authentication
   # This method does not require authentication.
-  # 
+  #
   # == Options
   # * user_id (Optional)
-  #     The NSID of the user who's photo to search. If this parameter isn't passed then everybody's public photos will be searched. A value of "me" will 
+  #     The NSID of the user who's photo to search. If this parameter isn't passed then everybody's public photos will be searched. A value of "me" will
   #     search against the calling user's photos for authenticated calls.
   # * tags (Optional)
   #     A comma-delimited list of tags. Photos with one or more of the tags listed will be returned.
@@ -30,7 +31,7 @@ class Flickr::Photos < Flickr::Base
   # * license (Optional)
   #     The license id for photos (for possible values see the flickr.photos.licenses.getInfo method). Multiple licenses may be comma-separated.
   # * sort (Optional)
-  #     The order in which to sort returned photos. Deafults to date-posted-desc. The possible values are: date-posted-asc, date-posted-desc, date-taken-asc, 
+  #     The order in which to sort returned photos. Deafults to date-posted-desc. The possible values are: date-posted-asc, date-posted-desc, date-taken-asc,
   #     date-taken-desc, interestingness-desc, interestingness-asc, and relevance.
   # * privacy_filter (Optional)
   #     Return photos only matching a certain privacy level. This only applies when making an authenticated call to view photos you own. Valid values are:
@@ -40,18 +41,18 @@ class Flickr::Photos < Flickr::Base
   #       4 private photos visible to friends & family
   #       5 completely private photos
   # * bbox (Optional)
-  #     A comma-delimited list of 4 values defining the Bounding Box of the area that will be searched. 
-  # 
-  #     The 4 values represent the bottom-left corner of the box and the top-right corner, minimum_longitude, minimum_latitude, maximum_longitude, maximum_latitude. 
-  # 
-  #     Longitude has a range of -180 to 180 , latitude of -90 to 90. Defaults to -180, -90, 180, 90 if not specified. 
-  # 
-  #     Unlike standard photo queries, geo (or bounding box) queries will only return 250 results per page. 
-  # 
-  #     Geo queries require some sort of limiting agent in order to prevent the database from crying. This is basically like the check against "parameterless searches" 
-  #     for queries without a geo component. 
-  # 
-  #     A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters — If no limiting factor is passed we 
+  #     A comma-delimited list of 4 values defining the Bounding Box of the area that will be searched.
+  #
+  #     The 4 values represent the bottom-left corner of the box and the top-right corner, minimum_longitude, minimum_latitude, maximum_longitude, maximum_latitude.
+  #
+  #     Longitude has a range of -180 to 180 , latitude of -90 to 90. Defaults to -180, -90, 180, 90 if not specified.
+  #
+  #     Unlike standard photo queries, geo (or bounding box) queries will only return 250 results per page.
+  #
+  #     Geo queries require some sort of limiting agent in order to prevent the database from crying. This is basically like the check against "parameterless searches"
+  #     for queries without a geo component.
+  #
+  #     A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters — If no limiting factor is passed we
   #     return only photos added in the last 12 hours (though we may extend the limit in the future).
   # * accuracy (Optional)
   #     Recorded accuracy level of the location information. Current range is 1-16 :
@@ -85,27 +86,27 @@ class Flickr::Photos < Flickr::Base
   #       Find photos that have a title, in any namespace : "machine_tags" => "*:title="
   #       Find photos that have a title, in any namespace, whose value is "mr. camera" : "machine_tags" => "*:title=\"mr. camera\""
   #       Find photos, in the 'dc' namespace whose value is "mr. camera" : "machine_tags" => "dc:*=\"mr. camera\""
-  #     Multiple machine tags may be queried by passing a comma-separated list. The number of machine tags you can pass in a single query depends on 
+  #     Multiple machine tags may be queried by passing a comma-separated list. The number of machine tags you can pass in a single query depends on
   #     the tag mode (AND or OR) that you are querying with. "AND" queries are limited to (16) machine tags. "OR" queries are limited to (8).
   # * machine_tag_mode (Required)
   #     Either 'any' for an OR combination of tags, or 'all' for an AND combination. Defaults to 'any' if not specified.
   # * group_id (Optional)
   #     The id of a group who's pool to search. If specified, only matching photos posted to the group's pool will be returned.
   # * woe_id (Optional)
-  #     A 32-bit identifier that uniquely represents spatial entities. (not used if bbox argument is present). Experimental. 
-  # 
-  #     Geo queries require some sort of limiting agent in order to prevent the database from crying. This is basically like the check against "parameterless searches" 
-  #     for queries without a geo component. 
-  # 
-  #     A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters &emdash; If no limiting factor is passed 
+  #     A 32-bit identifier that uniquely represents spatial entities. (not used if bbox argument is present). Experimental.
+  #
+  #     Geo queries require some sort of limiting agent in order to prevent the database from crying. This is basically like the check against "parameterless searches"
+  #     for queries without a geo component.
+  #
+  #     A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters &emdash; If no limiting factor is passed
   #     we return only photos added in the last 12 hours (though we may extend the limit in the future).
   # * place_id (Optional)
-  #     A Flickr place id. (not used if bbox argument is present). Experimental. 
-  # 
-  #     Geo queries require some sort of limiting agent in order to prevent the database from crying. This is basically like the check against "parameterless searches" 
-  #     for queries without a geo component. 
-  # 
-  #     A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters &emdash; If no limiting factor is passed 
+  #     A Flickr place id. (not used if bbox argument is present). Experimental.
+  #
+  #     Geo queries require some sort of limiting agent in order to prevent the database from crying. This is basically like the check against "parameterless searches"
+  #     for queries without a geo component.
+  #
+  #     A tag, for instance, is considered a limiting agent as are user defined min_date_taken and min_date_upload parameters &emdash; If no limiting factor is passed
   #     we return only photos added in the last 12 hours (though we may extend the limit in the future).
   # * per_page (Optional)
   #     Number of photos to return per page. If this argument is omitted, it defaults to 100. The maximum allowed value is 500.
@@ -113,7 +114,7 @@ class Flickr::Photos < Flickr::Base
   #     The page of results to return. If this argument is omitted, it defaults to 1.
   # * media (Optional)
   #     The type of media to search for. 'photo', 'video', or 'both' are allowed arguments, with 'both' being the default.
-  # 
+  #
   def search(options)
     options.merge!({:extras => "license,date_upload,date_taken,owner_name,icon_server,original_format,last_update,geo,tags,machine_tags,o_dims,views,media"})
 
@@ -134,12 +135,12 @@ class Flickr::Photos < Flickr::Base
       end if rsp.photos.photo
     end
   end
-    
+
   # Returns a list of the latest public photos uploaded to flickr.
-  # 
+  #
   # == Authentication
   # This method does not require authentication.
-  # 
+  #
   # == Options
   # * per_page (Optional)
   #     Number of photos to return per page. If this argument is omitted, it defaults to 100. The maximum allowed value is 500.
@@ -147,7 +148,7 @@ class Flickr::Photos < Flickr::Base
   #     The page of results to return. If this argument is omitted, it defaults to 1.
   # * media (Optional)
   #     The type of media to search for. 'photo', 'video', or 'both' are allowed arguments, with 'both' being the default.
-  # 
+  #
   def get_recent(options = {})
     options.merge!({:extras => "license,date_upload,date_taken,owner_name,icon_server,original_format,last_update,geo,tags,machine_tags,o_dims,views,media"})
 
@@ -167,7 +168,7 @@ class Flickr::Photos < Flickr::Base
       end if rsp.photos.photo
     end
   end
-  
+
   def interesting(options)
     options.merge!({:extras => "license,date_upload,date_taken,owner_name,icon_server,original_format,last_update,geo,tags,machine_tags,o_dims,views,media"})
 
@@ -189,11 +190,11 @@ class Flickr::Photos < Flickr::Base
       end if rsp.photos.photo
     end
   end
-  
+
   def licenses
     @licenses ||= begin
       rsp = @flickr.send_request('flickr.photos.licenses.getInfo')
-      
+
       returning Hash.new do |licenses|
         rsp.licenses.license.each do |license|
           licenses[license[:id].to_i] = Flickr::Photos::License.new(:id => license[:id].to_i, :name => license[:name], :url => license[:url])
@@ -213,7 +214,7 @@ class Flickr::Photos < Flickr::Base
     rsp = @flickr.send_request('flickr.photos.getInfo', :photo_id => photo_id)
     Photo.new(@flickr, :id => rsp.photo[:id].to_i, :owner => rsp.photo.owner,
       :secret => rsp.photo[:secret], :server => rsp.photo[:server].to_i, :farm => rsp.photo[:farm], :views => rsp.photo[:views],
-      :title => rsp.photo.title,
+      :title => rsp.photo.title.to_s, :comment_count => rsp.photo.comments.to_s.to_i,
       :is_public => rsp.photo.visibility[:public], :is_friend => rsp.photo.visibility[:is_friend], :is_family => rsp.photo.visibility[:is_family])
   end
 
@@ -242,5 +243,5 @@ class Flickr::Photos < Flickr::Base
      :views => photo[:views].to_i,
      :media => photo[:media]}
   end
-  
+
 end
